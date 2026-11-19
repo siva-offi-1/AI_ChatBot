@@ -1,0 +1,15 @@
+services:
+  api:
+    build: .
+    container_name: northstar-policy-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      DOCUMENTS_DIR: /app/documents
+      TOP_K: ${TOP_K:-4}
+      RETRIEVAL_THRESHOLD: ${RETRIEVAL_THRESHOLD:-0.12}
+    volumes:
+      - ./documents:/app/documents:ro
+    restart: unless-stopped

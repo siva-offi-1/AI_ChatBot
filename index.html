@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northstar — People & Policy Assistant</title>
+<style>
+:root{--ink:#18243a;--muted:#758198;--line:#e8edf4;--paper:#fff;--canvas:#f6f8fb;--navy:#15243d;--blue:#4569e8;--mint:#eaf7f1;--green:#17865f;--shadow:0 18px 55px rgba(26,42,70,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+.shell{min-height:100vh;display:grid;grid-template-columns:260px 1fr;max-width:1500px;margin:auto;background:#fff;box-shadow:var(--shadow)}
+aside{background:#fbfcfe;border-right:1px solid var(--line);padding:26px 18px;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:11px;padding:0 8px 30px}.mark{height:39px;width:39px;border-radius:13px;background:linear-gradient(145deg,#243c69,#6c83e9);display:grid;place-items:center;color:white;font-weight:800;font-size:19px;box-shadow:0 7px 18px #526cbb35}.brand b{font-size:15px;letter-spacing:-.3px}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.side-label{font-size:10px;font-weight:750;letter-spacing:1.3px;color:#9aa4b5;padding:0 10px;margin:8px 0 12px}
+.nav{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:11px;color:#647188;font-size:13px;margin:2px 0}.nav.active{background:#edf1ff;color:#3456ce;font-weight:650}.nav .ico{width:18px;text-align:center;font-size:16px}
+.side-note{margin-top:auto;background:#f0f4fb;border:1px solid #e7edf7;padding:14px;border-radius:14px;font-size:11px;line-height:1.55;color:#6c7890}.side-note b{display:block;color:#34435c;font-size:12px;margin-bottom:4px}
+main{min-width:0;display:flex;flex-direction:column;min-height:100vh}
+.topbar{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 36px}.crumb{font-size:12px;color:#96a0b0}.crumb b{color:#34435a;font-weight:650}.profile{display:flex;align-items:center;gap:10px;font-size:12px;color:#526078}.avatar{width:33px;height:33px;border-radius:50%;display:grid;place-items:center;background:#e9efff;color:#3859c8;font-weight:700}
+.content{width:min(880px,calc(100% - 48px));margin:0 auto;flex:1;display:flex;flex-direction:column;padding:45px 0 24px}
+.eyebrow{color:#5871d9;text-transform:uppercase;letter-spacing:1.7px;font-size:10px;font-weight:750;text-align:center}.intro{text-align:center;margin:12px auto 27px}.intro h1{font-size:clamp(27px,4vw,38px);letter-spacing:-1.3px;margin:0;color:#192943;font-weight:720}.intro p{font-size:14px;color:#7b879a;margin:11px 0 0;line-height:1.6}
+.pills{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 0 28px}.pill{border:1px solid var(--line);background:#fff;color:#67748a;border-radius:30px;padding:8px 12px;font-size:11px}
+.chat{display:flex;flex-direction:column;gap:20px;padding:4px 0 25px}.msg{display:flex;gap:11px;align-items:flex-start;max-width:88%}.msg.user{align-self:flex-end;flex-direction:row-reverse}.botmark{width:31px;height:31px;flex:0 0 31px;border-radius:11px;background:#eef2ff;color:#4d66d2;display:grid;place-items:center;font-size:14px}.user .botmark{background:#edf6f1;color:#24825e}.bubble{background:#f7f8fb;border:1px solid #edf0f5;border-radius:4px 16px 16px 16px;padding:13px 16px;font-size:13px;line-height:1.7;color:#354158;white-space:pre-wrap;overflow-wrap:anywhere}.user .bubble{background:#eef2ff;border-color:#e5eaff;border-radius:16px 4px 16px 16px;color:#293c78}.source{border-top:1px solid #e6eaf1;margin-top:10px;padding-top:8px;color:#758198;font-size:10px}.source strong{color:#53627a}.typing{font-size:12px;color:#8792a4;padding:4px 0 4px 43px}
+.composer-area{position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0),#fff 18%);padding:18px 0 20px}.composer{display:flex;align-items:flex-end;gap:10px;padding:9px 10px 9px 17px;border:1px solid #e1e7f0;border-radius:17px;background:#fff;box-shadow:0 8px 28px rgba(31,48,79,.07)}textarea{flex:1;border:0;outline:0;resize:none;min-height:42px;max-height:130px;font:13px inherit;color:#27364e;padding:12px 0;background:transparent}textarea::placeholder{color:#a0aabc}.send{height:42px;padding:0 18px;border:0;border-radius:12px;background:#4569e8;color:white;font-size:12px;font-weight:650;cursor:pointer;transition:.2s}.send:hover{background:#3458d8;transform:translateY(-1px)}.send:disabled{opacity:.55;cursor:wait;transform:none}.fine{text-align:center;color:#a0a9b8;font-size:10px;margin:11px 0 0}
+@media(max-width:760px){.shell{grid-template-columns:1fr}aside{display:none}.topbar{height:62px;padding:0 18px}.content{width:calc(100% - 30px);padding-top:35px}.msg{max-width:96%}.profile span{display:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside>
+  <div class="brand"><div class="mark">N</div><div><b>northstar</b><small>HOLDINGS · PEOPLE PORTAL</small></div></div>
+  <div class="side-label">WORKSPACE</div>
+  <div class="nav"><span class="ico">⌂</span> Overview</div>
+  <div class="nav active"><span class="ico">✧</span> Policy assistant</div>
+  <div class="nav"><span class="ico">▤</span> Company policies</div>
+  <div class="side-label" style="margin-top:30px">TOPICS</div>
+  <div class="nav"><span class="ico">◷</span> Attendance</div>
+  <div class="nav"><span class="ico">▣</span> Leave & holidays</div>
+  <div class="nav"><span class="ico">♙</span> Employee roles</div>
+  <div class="nav"><span class="ico">✈</span> Flight tickets</div>
+  <div class="nav"><span class="ico">▧</span> Payslips</div>
+  <div class="side-note"><b>Need a hand?</b>Ask a question about Northstar policies. Answers are grounded in the documents available to this assistant.</div>
+</aside>
+<main>
+  <div class="topbar"><div class="crumb">Workspace <span style="padding:0 7px;color:#c3cad5">/</span> <b>Policy assistant</b></div><div class="profile"><span>Northstar team member</span><div class="avatar">N</div></div></div>
+  <section class="content">
+    <div class="eyebrow">Your workplace, made simpler</div>
+    <div class="intro" id="intro"><h1>How can I help you today?</h1><p>Ask me anything about Northstar policies.<br>I'll help you find the information you need.</p></div>
+    <div class="pills" id="suggestions">
+      <button class="pill">What are the office working hours?</button>
+      <button class="pill">How many annual leave days do I get?</button>
+      <button class="pill">Who can view my payslip?</button>
+      <button class="pill">Am I eligible for a flight ticket?</button>
+    </div>
+    <section class="chat" id="chat" aria-live="polite"></section>
+    <div class="composer-area"><form class="composer" id="chatForm"><textarea id="question" rows="1" placeholder="Message your policy assistant..." required minlength="3" maxlength="2000"></textarea><button class="send" id="send" type="submit">Send&nbsp; ↗</button></form><div class="fine">AI-generated responses may need confirmation. Always refer to the official policy for final decisions.</div></div>
+  </section>
+</main>
+</div>
+<script>
+const chat=document.getElementById('chat'),form=document.getElementById('chatForm'),input=document.getElementById('question'),send=document.getElementById('send'),intro=document.getElementById('intro'),suggestions=document.getElementById('suggestions');
+function addMessage(text,role,sources){const row=document.createElement('div');row.className='msg '+role;const mark=document.createElement('div');mark.className='botmark';mark.textContent=role==='user'?'You':'✧';const bubble=document.createElement('div');bubble.className='bubble';bubble.textContent=text;if(sources&&sources.length){const src=document.createElement('div');src.className='source';const strong=document.createElement('strong');strong.textContent='Based on: ';src.append(strong,document.createTextNode(sources.map(s=>`${s.document}${s.section?' · '+s.section:''}`).join('; ')));bubble.appendChild(src)}row.append(mark,bubble);chat.appendChild(row);row.scrollIntoView({behavior:'smooth',block:'nearest'})}
+async function ask(q){const question=q.trim();if(question.length<3)return;intro.style.display='none';suggestions.style.display='none';addMessage(question,'user');input.value='';send.disabled=true;send.textContent='Thinking…';const wait=document.createElement('div');wait.className='typing';wait.textContent='Northstar assistant is thinking…';chat.appendChild(wait);try{const res=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question})});const data=await res.json();wait.remove();if(!res.ok)throw new Error(data.detail||`Request failed (${res.status})`);addMessage(data.answer||'I could not find an answer in the available policy documents.','bot',data.sources||[])}catch(e){wait.remove();addMessage(`I couldn't reach the assistant just now. ${e.message} Please check that the server is running and try again.`,'bot')}finally{send.disabled=false;send.textContent='Send ↗';input.focus()}}
+form.addEventListener('submit',e=>{e.preventDefault();ask(input.value)});input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();form.requestSubmit()}});suggestions.addEventListener('click',e=>{if(e.target.matches('button'))ask(e.target.textContent)});
+</script>
+</body></html>
